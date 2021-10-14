@@ -1,7 +1,7 @@
 import React from 'react'
-import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentWrapper, IconWrapper, PatientContact, PatientContactText, PatientImage, PatientInfo, PatientInfoText, PatientName } from './styles'
+import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentWrapper, IconWrapper, PatientContact, PatientContactText, PatientImage, PatientInfo, PatientInfoFlag, PatientInfoText, PatientName } from './styles'
 import moment from 'moment'
-import { Modal} from 'react-native'
+import { Image, Modal} from 'react-native'
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { togglePatientModal } from '../../store/patient.store' 
@@ -35,6 +35,7 @@ const PatientModal: React.FC = () => {
                                 <PatientInfoText>{ moment(currentPatient?.dob.date).format('DD/MM/YYYY') } - </PatientInfoText>
                                 <PatientInfoText>{ currentPatient ? currentPatient?.gender.charAt(0).toUpperCase() + currentPatient?.gender.slice(1) : '' } - </PatientInfoText>
                                 <PatientInfoText>{ currentPatient?.nat }</PatientInfoText>
+                                <PatientInfoFlag source={{ uri: `https://www.countryflags.io/${currentPatient?.nat}/flat/64.png` }} />
                             </PatientInfo>
                             <PatientContact>
                                 <IconWrapper>

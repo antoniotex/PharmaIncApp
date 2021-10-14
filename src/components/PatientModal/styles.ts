@@ -31,6 +31,7 @@ export const ContentBody = styled.View`
     align-items: center;
     z-index: -1;
     margin-top: -90px;
+    padding: 5px;
 `;
 
 export const PatientImage = styled.Image`
@@ -49,6 +50,7 @@ export const PatientName = styled.Text`
 
 export const PatientInfo = styled.View`
   flex-direction: row;
+  align-items: center;
   margin-bottom: 40px;
 `;
 
@@ -77,6 +79,12 @@ export const IconWrapper = styled.View`
     justify-content: center;
     align-items: center;
     margin-right: 10px;
+`;
+
+export const PatientInfoFlag = styled.Image`
+    width: 30px;
+    height: 25px;
+    margin-left: 5px;
 `;
 
 
