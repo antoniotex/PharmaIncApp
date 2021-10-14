@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components/native";
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
     width: 100%;
     flex-direction: row;
-    padding: 16px;
+    padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
     background-color: #fff;
 `;
 
 export const Picture = styled.Image`
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 40px;
     margin-right: 10px;
 `;
@@ -33,7 +33,8 @@ export const InfoFooter = styled.View`
 `;
 
 export const InfoGender = styled.Text`
-    font-size: 18px;
+    font-size: 15px;
+    color: #333;
 `;
 
 export const InfoDob = styled(InfoGender)``;
