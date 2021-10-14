@@ -22,10 +22,12 @@ const Home = () => {
 
     const patient = useSelector((state: RootState) => state.patient)
 
+    const notFoundMessage: boolean = !patient.list.length && !!query
+
     return (
         <Container>
             <PatientSearch value={query} onChangeText={(t: string) => setQuery(t)} />
-            { !patient.list.length && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
+            { notFoundMessage && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
             { patient.list.map(patient => (
                 <PatientCard key={patient.login.uuid} patient={patient} />
             )) }

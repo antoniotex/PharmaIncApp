@@ -14,7 +14,7 @@ const PatientSearch: React.FC<Props> = ({ onChangeText, value }) => {
             <InputWrapper>
                 <Input
                     placeholder="Searching"
-                    placeholderTextColor={COLORS.secondaryOrange}
+                    placeholderTextColor={COLORS.secondaryBlue}
                     value={value}
                     onChangeText={onChangeText}
                 />

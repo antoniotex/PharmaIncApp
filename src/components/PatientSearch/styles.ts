@@ -9,7 +9,7 @@ export const Container = styled.View`
 
 export const InputWrapper = styled.View`
     flex: 1;
-    border: 1px solid ${COLORS.secondaryOrange};
+    border: 1px solid ${COLORS.secondaryBlue};
     flex-direction: row;
     border-radius: 8px;
     padding: 8px;
@@ -19,7 +19,7 @@ export const InputWrapper = styled.View`
 export const Input = styled.TextInput`
     flex: 1;
     font-size: 18px;
-    color: ${COLORS.primaryOrange};
+    color: ${COLORS.secondaryOrange};
 `;
 
 export const Filter = styled.TouchableOpacity`

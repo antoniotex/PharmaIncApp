@@ -5,6 +5,7 @@ export const COLORS = {
     primaryCyan: '#00AFAD',
     primaryOrange: '#F26522',
     secondaryOrange: '#FCAF17',
+    primaryGray: '#E6E6E6',
 
     // colors
     black: "#000000",
