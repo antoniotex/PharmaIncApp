@@ -11,6 +11,7 @@ const patientFields = 'name,gender,location,email,login,dob,phone,cell,picture,n
 
 interface Patient {
     list: IPatientCard[];
+    originalList: IPatientCard[];
     loading: boolean;
     showModal: boolean;
     currentPatient?: IPatientCard
@@ -18,6 +19,7 @@ interface Patient {
 
 const initialState: Patient = {
     list: [],
+    originalList: [],
     loading: false,
     showModal: false
 }
@@ -31,14 +33,22 @@ const patient = createSlice({
         },
         updateCurrentPatient: (state, action) => {
             state.currentPatient = action.payload
+        },
+        filterPatientList: (state, action) => {
+            state.list = state.originalList
+            state.list = state.list.filter((patient) => {
+                const name = `${patient.name.title} ${patient.name.first} ${patient.name.last}`
+                return name.toLowerCase().includes(action.payload.toLowerCase())
+            })
         }
     },
     extraReducers: (builder) => {
         builder.addCase(getPatients.fulfilled, (state, action) => {
             state.list = action.payload.results
+            state.originalList = action.payload.results
         })
     }
 })
 
-export const { togglePatientModal, updateCurrentPatient } = patient.actions;
+export const { togglePatientModal, updateCurrentPatient, filterPatientList } = patient.actions;
 export default patient.reducer
