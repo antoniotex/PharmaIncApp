@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PatientCard from '../../components/PatientCard'
 import PatientModal from '../../components/PatientModal'
+import PatientSearch from '../../components/PatientSearch'
 import { RootState } from '../../store'
 import { getPatients } from '../../store/patient.store'
 import { Container } from './styles'
@@ -17,6 +18,7 @@ const Home = () => {
 
     return (
         <Container>
+            <PatientSearch />
             { patient.list.map(patient => (
                 <PatientCard key={patient.login.uuid} patient={patient} />
             )) }
