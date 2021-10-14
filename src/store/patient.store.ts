@@ -4,7 +4,9 @@ const patient = createSlice({
     name: 'patient',
     initialState:{
         list: [
-            { id: 1, name: 'Mr Eleazar Ribeiro', gender: 'male', dob: '12/09/1988', picture: 'https://randomuser.me/api/portraits/thumb/men/62.jpg'}
+            { id: 1, name: 'Mr Eleazar Ribeiro', gender: 'male', dob: '12/09/1988', picture: 'https://randomuser.me/api/portraits/med/men/62.jpg'},
+            { id: 2, name: 'Mr Eleazar Ribeiro', gender: 'male', dob: '12/09/1988', picture: 'https://randomuser.me/api/portraits/med/men/62.jpg'},
+            { id: 3, name: 'Mr Eleazar Ribeiro', gender: 'male', dob: '12/09/1988', picture: 'https://randomuser.me/api/portraits/med/men/62.jpg'},
         ]
     },
     reducers:{

@@ -10,7 +10,10 @@ import store from './src/store';
 const App = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView>
+      <SafeAreaView style={{
+        flex: 1,
+        backgroundColor:'#eee'
+      }}>
         <Home />
       </SafeAreaView>
     </Provider>

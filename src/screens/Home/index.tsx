@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 import { useSelector } from 'react-redux'
+import PatientCard from '../../components/PatientCard'
 import { RootState } from '../../store'
 import { Container } from './styles'
 
@@ -9,7 +10,9 @@ const Home = () => {
     console.log(patient.list)
     return (
         <Container>
-            <Text>Home works!</Text>
+            { patient.list.map(patient => (
+                <PatientCard key={patient.id} patient={patient} />
+            )) }
         </Container>
     )
 }
