@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import { COLORS } from "../../constants/theme";
 
 export const Container = styled.TouchableOpacity`
     width: 100%;
@@ -7,7 +8,7 @@ export const Container = styled.TouchableOpacity`
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: ${COLORS.secondaryBlue};
 `;
 
 export const Picture = styled.Image`
@@ -25,6 +26,7 @@ export const Info = styled.View`
 export const InfoName = styled.Text`
     font-weight: bold;
     font-size: 20px;
+    color: ${COLORS.secondaryOrange}
 `;
 
 export const InfoFooter = styled.View`
@@ -33,8 +35,10 @@ export const InfoFooter = styled.View`
 `;
 
 export const InfoGender = styled.Text`
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: bold;
     color: #333;
+    color: ${COLORS.secondaryOrange}
 `;
 
 export const InfoDob = styled(InfoGender)``;
