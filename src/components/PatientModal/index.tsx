@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container } from './styles'
+import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentWrapper, IconWrapper, PatientContact, PatientContactText, PatientImage, PatientInfo, PatientInfoText, PatientName } from './styles'
 import moment from 'moment'
-import { Modal, Text, TouchableOpacity, View } from 'react-native'
+import { Modal} from 'react-native'
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { togglePatientModal } from '../../store/patient.store' 
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const PatientModal: React.FC = () => {
     const dispach = useDispatch()
@@ -13,21 +14,64 @@ const PatientModal: React.FC = () => {
     return (
         <Container>
             <Modal
-                animationType="fade"
+                animationType="slide"
                 transparent={true}
                 visible={showModal}
                 onRequestClose={() => {
                     dispach(togglePatientModal(false))
-                }}
-            >
-                <View style={{ flex:1, justifyContent:'flex-end', backgroundColor:'rgba(0,0,0,.5)' }}>
-                    <View style={{ backgroundColor:'#fff', height: '90%' }}>
-                        <TouchableOpacity onPress={() => dispach(togglePatientModal(false))}>
-                            <Text>Fechar</Text>
-                        </TouchableOpacity>
-                        <Text>{ currentPatient?.gender }</Text>
-                    </View>
-                </View>
+                }}>
+                <ContentWrapper>
+                    <Content>
+                        <ContentHeader>
+                            <CloseButton onPress={() => dispach(togglePatientModal(false))}>
+                                <Icon name="close" size={30} color="#F26522" />
+                            </CloseButton>
+                        </ContentHeader>
+                        <ContentBody>
+                            <PatientImage source={{ uri: currentPatient?.picture.large }} />
+                            <PatientName>{ `${currentPatient?.name.title} ${currentPatient?.name.first} ${currentPatient?.name.last}` }</PatientName>
+                            <PatientInfo>
+                                <PatientInfoText>{ moment(currentPatient?.dob.date).format('DD/MM/YYYY') } - </PatientInfoText>
+                                <PatientInfoText>{ currentPatient ? currentPatient?.gender.charAt(0).toUpperCase() + currentPatient?.gender.slice(1) : '' } - </PatientInfoText>
+                                <PatientInfoText>{ currentPatient?.nat }</PatientInfoText>
+                            </PatientInfo>
+                            <PatientContact>
+                                <IconWrapper>
+                                    <Icon name="map-marker" size={50} color="#F26522" />
+                                </IconWrapper>
+                                <PatientContactText numberOfLines={3}>
+                                    { `${currentPatient?.location.street.name}, ${currentPatient?.location.street.number} - ${currentPatient?.location.city}, ${currentPatient?.location.state} - ${currentPatient?.location.country}` }
+                                </PatientContactText>
+                            </PatientContact>
+                            <PatientContact>
+                                <IconWrapper>
+                                    <Icon name="at" size={50} color="#F26522" />
+                                </IconWrapper>
+                                <PatientContactText>{ currentPatient?.email }</PatientContactText>
+                            </PatientContact>
+                            <PatientContact>
+                                <IconWrapper>
+                                    <Icon name="phone" size={50} color="#F26522" />
+                                </IconWrapper>
+                                <PatientContactText>{ currentPatient?.phone }</PatientContactText>
+                            </PatientContact>
+                            <PatientContact>
+                                <IconWrapper>
+                                    <Icon name="mobile" size={50} color="#F26522" />
+                                </IconWrapper>
+                                <PatientContactText>{ currentPatient?.cell }</PatientContactText>
+                            </PatientContact>
+                            <PatientContact>
+                                <IconWrapper>
+                                    <Icon name="id-card" size={40} color="#F26522" />
+                                </IconWrapper>
+                                <PatientContactText>
+                                    {currentPatient?.id.name ? `(${currentPatient?.id.name}) ${currentPatient?.id.value}` : 'Was not informed'}
+                                </PatientContactText>
+                            </PatientContact>
+                        </ContentBody>
+                    </Content>
+                </ContentWrapper>
             </Modal>
         </Container>
     )

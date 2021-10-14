@@ -28,5 +28,9 @@ export interface IPatientCard {
         city: string;
         state: string;
         country: string;
-    }
+    },
+    id: {
+        name: string;
+        value: string;
+    },
 }

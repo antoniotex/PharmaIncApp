@@ -7,7 +7,7 @@ export const getPatients = createAsyncThunk('patient/getPatients', async () => {
     return fetch(`https://randomuser.me/api?results=50&inc=${patientFields}`).then((res) => res.json())
 });
 
-const patientFields = 'name,gender,location,email,login,dob,phone,cell,picture,nat'
+const patientFields = 'name,gender,location,email,login,dob,phone,cell,picture,nat,id'
 
 interface Patient {
     list: IPatientCard[];
