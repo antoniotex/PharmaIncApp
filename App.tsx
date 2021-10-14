@@ -3,12 +3,17 @@ import {
   SafeAreaView,
   Text,
 } from 'react-native';
+import { Provider } from 'react-redux'
+import Home from './src/screens/Home';
+import store from './src/store';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <Text>App works!!</Text>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView>
+        <Home />
+      </SafeAreaView>
+    </Provider>
   );
 };
 
