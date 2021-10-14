@@ -1,5 +1,4 @@
 export interface IPatientCard {
-    id: number;
     name: {
         title: string;
         first: string;
@@ -16,5 +15,18 @@ export interface IPatientCard {
     },
     login: {
         uuid: string;
+    },
+    email: string;
+    phone: string;
+    cell: string;
+    nat: string;
+    location: {
+        street: {
+            number: number;
+            name: string;
+        },
+        city: string;
+        state: string;
+        country: string;
     }
 }

@@ -4,8 +4,10 @@ import { IPatientCard } from './../interfaces/IPatientCard';
 export const getPatients = createAsyncThunk('patient/getPatients', async () => {
     // const response = await API.get('ttps://randomuser.me/api?results=50')
     // return response.data
-    return fetch('https://randomuser.me/api?results=50').then((res) => res.json())
+    return fetch(`https://randomuser.me/api?results=50&inc=${patientFields}`).then((res) => res.json())
 });
+
+const patientFields = 'name,gender,location,email,login,dob,phone,cell,picture,nat'
 
 interface Patient {
     list: IPatientCard[];
