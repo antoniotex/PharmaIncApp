@@ -21,7 +21,7 @@ const initialState: ISetting = {
     },
     itemsPerRequest: 25,
     nationality: '',
-    showSettingsModal: true
+    showSettingsModal: false
 }
 
 const setting = createSlice({
@@ -30,9 +30,12 @@ const setting = createSlice({
     reducers: {
         toggleSettingModal: (state, action) => {
             state.showSettingsModal = action.payload
+        },
+        updateItemsPerRequest: (state, action) => {
+            state.itemsPerRequest = action.payload
         }
     }
 })
 
-export const { toggleSettingModal } = setting.actions;
+export const { toggleSettingModal, updateItemsPerRequest } = setting.actions;
 export default setting.reducer

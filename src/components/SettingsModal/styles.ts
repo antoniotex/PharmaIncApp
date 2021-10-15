@@ -27,4 +27,37 @@ export const CloseButton = styled.TouchableOpacity`
     right: 5px;
 `;
 
+export const ContentBody = styled.View`
+    padding: 10px;
+    margin-top: 50px;
+    z-index: -1;
+`;
+
+export const ContentItem = styled.View`
+    background-color: ${COLORS.secondaryBlue};
+    border-radius: 8px;
+    padding: 10px;
+    z-index: -1;
+`;
+
+export const ItemsPerRequest = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const TitleText = styled.Text`
+    color: ${COLORS.secondaryOrange};
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+`;
+
+export const ItemsPerRequestText = styled.Text`
+    color: ${COLORS.secondaryOrange};
+    font-weight: bold;
+    font-size: 25px;
+    margin-right: 10px;
+`;
+
+
 
