@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentItem, ContentWrapper, ItemsPerRequest, TitleText, ItemsPerRequestText } from './styles'
+import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentItem, ContentWrapper, ItemsPerRequest, TitleText, ItemsPerRequestText, Gender, GenderOption, GenderOptionText } from './styles'
 import { Modal } from 'react-native'
 import Slider from '@react-native-community/slider';
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
-import { toggleSettingModal, updateItemsPerRequest } from '../../store/setting.store';
+import { GenderEnum, toggleSettingModal, updateGender, updateItemsPerRequest } from '../../store/setting.store';
 
 const SettingsModal: React.FC = () => {
     const dispach = useDispatch()
-    const { showSettingsModal, itemsPerRequest } = useSelector((state: RootState) => state.setting)
+    const { showSettingsModal, itemsPerRequest, filter } = useSelector((state: RootState) => state.setting)
     
     return (
         <Container>
@@ -44,6 +44,29 @@ const SettingsModal: React.FC = () => {
                                         maximumTrackTintColor={COLORS.primaryCyan}
                                     />
                                 </ItemsPerRequest>
+                            </ContentItem>
+                            <ContentItem>
+                                <TitleText>Gender</TitleText>
+                                <Gender>
+                                    <GenderOption onPress={() => dispach(updateGender(GenderEnum.female))} style={{
+                                        backgroundColor: filter.gender == GenderEnum.female ? COLORS.primaryOrange : 'transparent'
+                                    }}>
+                                        <GenderOptionText>Female</GenderOptionText>
+                                    </GenderOption>
+                                    <GenderOption onPress={() => dispach(updateGender(GenderEnum.male))} style={{
+                                        backgroundColor: filter.gender == GenderEnum.male ? COLORS.primaryOrange : 'transparent'
+                                    }}>
+                                        <GenderOptionText>Male</GenderOptionText>
+                                    </GenderOption>
+                                    <GenderOption onPress={() => dispach(updateGender(GenderEnum.other))} style={{
+                                        backgroundColor: filter.gender == GenderEnum.other ? COLORS.primaryOrange : 'transparent'
+                                    }}>
+                                        <GenderOptionText>Other</GenderOptionText>
+                                    </GenderOption>
+                                </Gender>
+                            </ContentItem>
+                            <ContentItem>
+                                <TitleText>Nationality</TitleText>
                             </ContentItem>
                         </ContentBody>
                     </Content>

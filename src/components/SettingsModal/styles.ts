@@ -37,6 +37,7 @@ export const ContentItem = styled.View`
     background-color: ${COLORS.secondaryBlue};
     border-radius: 8px;
     padding: 10px;
+    margin-bottom: 20px;
     z-index: -1;
 `;
 
@@ -57,6 +58,24 @@ export const ItemsPerRequestText = styled.Text`
     font-weight: bold;
     font-size: 25px;
     margin-right: 10px;
+`;
+
+export const Gender = styled.View`
+    flex-direction: row;
+    justify-content: space-around;
+`;
+
+export const GenderOption = styled.TouchableOpacity`
+    border: 1px solid ${COLORS.secondaryOrange};
+    border-radius: 20px;
+    padding: 10px;
+    /* background-color: ${COLORS.primaryOrange}; */
+`;
+
+export const GenderOptionText = styled.Text`
+    font-weight: bold;
+    font-size: 14px;
+    color: ${COLORS.secondaryOrange};
 `;
 
 

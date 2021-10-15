@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-enum Gender {
+export enum GenderEnum {
     female = 'female',
     male = 'male',
     other = 'other'
@@ -8,7 +8,7 @@ enum Gender {
 
 interface ISetting {
     filter: {
-        gender: Gender | null
+        gender: GenderEnum | null
     };
     itemsPerRequest: number;
     nationality: string,
@@ -33,9 +33,12 @@ const setting = createSlice({
         },
         updateItemsPerRequest: (state, action) => {
             state.itemsPerRequest = action.payload
+        },
+        updateGender: (state, action) => {
+            state.filter.gender = action.payload
         }
     }
 })
 
-export const { toggleSettingModal, updateItemsPerRequest } = setting.actions;
+export const { toggleSettingModal, updateItemsPerRequest, updateGender } = setting.actions;
 export default setting.reducer
