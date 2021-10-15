@@ -1,10 +1,23 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPatientCard } from './../interfaces/IPatientCard';
+import { GenderEnum } from './setting.store';
 
-export const getPatients = createAsyncThunk('patient/getPatients', async () => {
+interface Filter {
+    gender: GenderEnum | null;
+    itemsPerRequest: number;
+    nationality: string,
+}
+
+export const getPatients = createAsyncThunk('patient/getPatients', async (query: Filter) => {
     // const response = await API.get('ttps://randomuser.me/api?results=50')
     // return response.data
-    return fetch(`https://randomuser.me/api?results=50&inc=${patientFields}`).then((res) => res.json())
+    const gender = query?.gender ? `&gender=${query.gender}` : ''
+    const itemsPerRequest = query?.itemsPerRequest ? query.itemsPerRequest : 50
+    const nationality = query?.nationality ? `&nat=${query.nationality}` : ''
+
+    return fetch(
+        `https://randomuser.me/api?results=${itemsPerRequest}&inc=${patientFields}${gender}${nationality}`
+    ).then((res) => res.json())
 });
 
 const patientFields = 'name,gender,location,email,login,dob,phone,cell,picture,nat,id'

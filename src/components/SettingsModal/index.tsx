@@ -7,10 +7,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
 import { GenderEnum, toggleSettingModal, updateGender, updateItemsPerRequest, countries, updateNationality } from '../../store/setting.store';
+import { getPatients } from '../../store/patient.store';
 
 const SettingsModal: React.FC = () => {
     const dispach = useDispatch()
     const { showSettingsModal, itemsPerRequest, filter, nationality } = useSelector((state: RootState) => state.setting)
+
+    const search = () => {
+        const query = {
+            gender: filter.gender,
+            itemsPerRequest,
+            nationality
+        }
+        dispach(getPatients(query))
+    }
     
     return (
         <Container>
@@ -18,6 +28,7 @@ const SettingsModal: React.FC = () => {
                 animationType="slide"
                 transparent={true}
                 visible={showSettingsModal}
+                onDismiss={search}
                 onRequestClose={() => {
                     dispach(toggleSettingModal(false))
                 }}>

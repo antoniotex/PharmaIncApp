@@ -40,7 +40,7 @@ const initialState: ISetting = {
     filter: {
         gender: null
     },
-    itemsPerRequest: 25,
+    itemsPerRequest: 50,
     showSettingsModal: false,
     nationality: ''
 }
