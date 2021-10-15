@@ -12,7 +12,6 @@ export const ContentWrapper = styled.View`
 
 export const Content = styled.View`
     background-color: ${COLORS.primaryBlue};
-    height: 82%;
 `;
 
 export const ContentHeader = styled.View``;
@@ -29,7 +28,7 @@ export const CloseButton = styled.TouchableOpacity`
 
 export const ContentBody = styled.View`
     padding: 10px;
-    margin-top: 50px;
+    margin-top: 40px;
     z-index: -1;
 `;
 
@@ -76,6 +75,35 @@ export const GenderOptionText = styled.Text`
     font-weight: bold;
     font-size: 14px;
     color: ${COLORS.secondaryOrange};
+`;
+
+export const Nationality = styled.View`
+    flex-direction: row;
+    flex-wrap: wrap;
+`;
+
+export const NationalityScroller = styled.ScrollView`
+    max-height: 400px;
+`;
+
+export const NationalityOption = styled.TouchableOpacity`
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid ${COLORS.secondaryOrange};
+    border-radius: 20px;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+`;
+
+export const Flag = styled.Image`
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+`;
+
+export const CountryName = styled(GenderOptionText)`
 `;
 
 

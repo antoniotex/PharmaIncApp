@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentItem, ContentWrapper, ItemsPerRequest, TitleText, ItemsPerRequestText, Gender, GenderOption, GenderOptionText } from './styles'
+import React from 'react'
+import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentItem, ContentWrapper, ItemsPerRequest, TitleText, ItemsPerRequestText, Gender, GenderOption, GenderOptionText, Nationality, NationalityOption, Flag, CountryName, NationalityScroller } from './styles'
 import { Modal } from 'react-native'
 import Slider from '@react-native-community/slider';
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
-import { GenderEnum, toggleSettingModal, updateGender, updateItemsPerRequest } from '../../store/setting.store';
+import { GenderEnum, toggleSettingModal, updateGender, updateItemsPerRequest, countries, updateNationality } from '../../store/setting.store';
 
 const SettingsModal: React.FC = () => {
     const dispach = useDispatch()
-    const { showSettingsModal, itemsPerRequest, filter } = useSelector((state: RootState) => state.setting)
+    const { showSettingsModal, itemsPerRequest, filter, nationality } = useSelector((state: RootState) => state.setting)
     
     return (
         <Container>
@@ -67,6 +67,23 @@ const SettingsModal: React.FC = () => {
                             </ContentItem>
                             <ContentItem>
                                 <TitleText>Nationality</TitleText>
+                                <NationalityScroller>
+                                    <Nationality>
+
+                                        { countries.map((country, i) => (
+                                            <NationalityOption 
+                                              key={i} 
+                                              onPress={() => dispach(updateNationality(country.abbreviation))}
+                                              style={{
+                                                  backgroundColor: nationality == country.abbreviation ? COLORS.primaryOrange : 'transparent'
+                                              }}  
+                                            >
+                                                <Flag source={{ uri: `https://www.countryflags.io/${country.abbreviation}/flat/64.png`}} />
+                                                <CountryName>{ country.name }</CountryName>
+                                            </NationalityOption>
+                                        )) }
+                                    </Nationality>
+                                </NationalityScroller>
                             </ContentItem>
                         </ContentBody>
                     </Content>
