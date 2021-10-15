@@ -14,6 +14,7 @@ export const InputWrapper = styled.View`
     border-radius: 8px;
     padding: 8px;
     margin: 20px 0px;
+    align-items: center;
 `;
 
 export const Input = styled.TextInput`
