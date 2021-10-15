@@ -1,10 +1,12 @@
 import { configureStore, Action, ThunkAction } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import patientReducer from './patient.store'
+import settingReducer from './setting.store'
 
 const store = configureStore({
     reducer: {
-        patient: patientReducer
+        patient: patientReducer,
+        setting: settingReducer
     }
 })
 

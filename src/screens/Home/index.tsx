@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PatientCard from '../../components/PatientCard'
 import PatientModal from '../../components/PatientModal'
 import PatientSearch from '../../components/PatientSearch'
+import SettingsModal from '../../components/SettingsModal'
 import { RootState } from '../../store'
 import { filterPatientList, getPatients } from '../../store/patient.store'
 import { Container, NotFoundText } from './styles'
@@ -32,6 +33,7 @@ const Home = () => {
                 <PatientCard key={patient.login.uuid} patient={patient} />
             )) }
             <PatientModal />
+            <SettingsModal />
         </Container>
     )
 }

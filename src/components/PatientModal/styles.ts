@@ -83,7 +83,7 @@ export const IconWrapper = styled.View`
 
 export const PatientInfoFlag = styled.Image`
     width: 30px;
-    height: 25px;
+    height: 30px;
     margin-left: 5px;
 `;
 
