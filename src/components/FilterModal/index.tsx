@@ -6,7 +6,7 @@ import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
-import { GenderEnum, toggleFilterModal, updateGender, updateItemsPerRequest, countries, updateNationality } from '../../store/filter.store';
+import { GenderEnum, toggleFilterModal, updateGender, updateItemsPerRequest, countries, addNationality, removeNationality } from '../../store/filter.store';
 import { getPatients } from '../../store/patient.store';
 
 const FiltersModal: React.FC = () => {
@@ -17,7 +17,7 @@ const FiltersModal: React.FC = () => {
         const query = {
             gender: filter.gender,
             itemsPerRequest: filter.itemsPerRequest,
-            nationality: filter.nationality
+            nationality: filter.nationality.join()
         }
         dispach(getPatients(query))
     }
@@ -84,9 +84,15 @@ const FiltersModal: React.FC = () => {
                                         { countries.map((country, i) => (
                                             <NationalityOption 
                                               key={i} 
-                                              onPress={() => dispach(updateNationality(country.abbreviation))}
+                                              onPress={() => {
+                                                  if(filter.nationality.includes(country.abbreviation)){
+                                                    dispach(removeNationality(country.abbreviation))
+                                                  }else{
+                                                    dispach(addNationality(country.abbreviation))
+                                                  }
+                                              }}
                                               style={{
-                                                  backgroundColor: filter.nationality == country.abbreviation ? COLORS.primaryOrange : 'transparent'
+                                                  backgroundColor: filter.nationality.includes(country.abbreviation) ? COLORS.primaryOrange : 'transparent'
                                               }}  
                                             >
                                                 <Flag source={{ uri: `https://www.countryflags.io/${country.abbreviation}/flat/64.png`}} />

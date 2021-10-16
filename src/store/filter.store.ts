@@ -10,7 +10,7 @@ interface IFilter {
     filter: {
         gender: GenderEnum | null
         itemsPerRequest: number;
-        nationality: string,
+        nationality: string[],
     };
     showFilterModal: boolean
 }
@@ -39,7 +39,7 @@ const initialState: IFilter = {
     filter: {
         gender: null,
         itemsPerRequest: 50,
-        nationality: ''
+        nationality: []
     },
     showFilterModal: false,
 }
@@ -57,11 +57,16 @@ const filter = createSlice({
         updateGender: (state, action) => {
             state.filter.gender = action.payload
         },
-        updateNationality: (state, action) => {
-            state.filter.nationality = action.payload
+        addNationality: (state, action) => {
+            state.filter.nationality.push(action.payload)
+        },
+        removeNationality: (state, action) => {
+            state.filter.nationality = state.filter.nationality.filter((f) => {
+                return f.trim() != action.payload.trim()
+            })
         }
     }
 })
 
-export const { toggleFilterModal, updateItemsPerRequest, updateGender, updateNationality } = filter.actions;
+export const { toggleFilterModal, updateItemsPerRequest, updateGender, addNationality, removeNationality } = filter.actions;
 export default filter.reducer
