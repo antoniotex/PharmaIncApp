@@ -55,7 +55,7 @@ const filter = createSlice({
             state.filter.itemsPerRequest = action.payload
         },
         updateGender: (state, action) => {
-            state.filter.gender = action.payload
+            state.filter.gender = state.filter.gender != action.payload ? action.payload : null
         },
         addNationality: (state, action) => {
             state.filter.nationality.push(action.payload)

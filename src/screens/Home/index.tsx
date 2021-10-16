@@ -18,7 +18,7 @@ const Home = () => {
     }, [query])
 
     useEffect(() => {
-        dispach(getPatients({gender: filter.gender, nationality: filter.nationality, itemsPerRequest: filter.itemsPerRequest}))
+        dispach(getPatients({gender: filter.gender, nationality: filter.nationality.join(), itemsPerRequest: filter.itemsPerRequest}))
     }, [dispach])
 
     const patient = useSelector((state: RootState) => state.patient)
