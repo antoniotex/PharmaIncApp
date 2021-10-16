@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PatientCard from '../../components/PatientCard'
 import PatientModal from '../../components/PatientModal'
 import PatientSearch from '../../components/PatientSearch'
-import SettingsModal from '../../components/SettingsModal'
+import FilterModal from '../../components/FilterModal'
 import { RootState } from '../../store'
 import { filterPatientList, getPatients } from '../../store/patient.store'
 import { Container, NotFoundText } from './styles'
@@ -18,10 +18,11 @@ const Home = () => {
     }, [query])
 
     useEffect(() => {
-        dispach(getPatients())
+        dispach(getPatients({gender: filter.gender, nationality: filter.nationality, itemsPerRequest: filter.itemsPerRequest}))
     }, [dispach])
 
     const patient = useSelector((state: RootState) => state.patient)
+    const { filter } = useSelector((state: RootState) => state.filter)
 
     const notFoundMessage: boolean = !patient.list.length && !!query
 
@@ -33,7 +34,7 @@ const Home = () => {
                 <PatientCard key={patient.login.uuid} patient={patient} />
             )) }
             <PatientModal />
-            <SettingsModal />
+            <FilterModal />
         </Container>
     )
 }

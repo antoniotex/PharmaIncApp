@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Children } from 'react';
 
 export enum GenderEnum {
     female = 'female',
@@ -7,13 +6,13 @@ export enum GenderEnum {
     other = 'other'
 }
 
-interface ISetting {
+interface IFilter {
     filter: {
         gender: GenderEnum | null
+        itemsPerRequest: number;
+        nationality: string,
     };
-    itemsPerRequest: number;
-    nationality: string,
-    showSettingsModal: boolean
+    showFilterModal: boolean
 }
 
 export const countries = [
@@ -36,33 +35,33 @@ export const countries = [
     { abbreviation: 'US', name:'United States'}
 ]
 
-const initialState: ISetting = {
+const initialState: IFilter = {
     filter: {
-        gender: null
+        gender: null,
+        itemsPerRequest: 50,
+        nationality: ''
     },
-    itemsPerRequest: 50,
-    showSettingsModal: false,
-    nationality: ''
+    showFilterModal: false,
 }
 
-const setting = createSlice({
-    name: 'setting',
+const filter = createSlice({
+    name: 'filter',
     initialState,
     reducers: {
-        toggleSettingModal: (state, action) => {
-            state.showSettingsModal = action.payload
+        toggleFilterModal: (state, action) => {
+            state.showFilterModal = action.payload
         },
         updateItemsPerRequest: (state, action) => {
-            state.itemsPerRequest = action.payload
+            state.filter.itemsPerRequest = action.payload
         },
         updateGender: (state, action) => {
             state.filter.gender = action.payload
         },
         updateNationality: (state, action) => {
-            state.nationality = action.payload
+            state.filter.nationality = action.payload
         }
     }
 })
 
-export const { toggleSettingModal, updateItemsPerRequest, updateGender, updateNationality } = setting.actions;
-export default setting.reducer
+export const { toggleFilterModal, updateItemsPerRequest, updateGender, updateNationality } = filter.actions;
+export default filter.reducer

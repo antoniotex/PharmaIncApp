@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IPatientCard } from './../interfaces/IPatientCard';
-import { GenderEnum } from './setting.store';
+import { GenderEnum } from './filter.store';
 
 interface Filter {
     gender: GenderEnum | null;

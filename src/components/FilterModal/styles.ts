@@ -1,4 +1,4 @@
-import { COLORS } from './../../constants/theme';
+import { COLORS } from '../../constants/theme';
 import React from "react";
 import styled from "styled-components/native";
 

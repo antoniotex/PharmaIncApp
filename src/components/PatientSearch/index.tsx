@@ -3,7 +3,7 @@ import { Container, Filter, Input, InputWrapper } from './styles'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { COLORS } from '../../constants/theme'
 import { useDispatch } from 'react-redux';
-import { toggleSettingModal } from '../../store/setting.store';
+import { toggleFilterModal } from '../../store/filter.store';
 
 interface Props {
     onChangeText: any;
@@ -23,7 +23,7 @@ const PatientSearch: React.FC<Props> = ({ onChangeText, value }) => {
                 />
                 <Icon name="account-search" size={30} color={COLORS.secondaryOrange} />
             </InputWrapper>
-            <Filter onPress={ () => dispatch(toggleSettingModal(true))}>
+            <Filter onPress={ () => dispatch(toggleFilterModal(true))}>
                 <Icon name="filter" size={30} color={COLORS.secondaryOrange} />
             </Filter>
         </Container>
