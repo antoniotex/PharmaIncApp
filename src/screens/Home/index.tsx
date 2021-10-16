@@ -7,6 +7,7 @@ import FilterModal from '../../components/FilterModal'
 import { RootState } from '../../store'
 import { filterPatientList, getPatients } from '../../store/patient.store'
 import { Container, NotFoundText } from './styles'
+import { ActivityIndicator } from 'react-native'
 
 const Home = () => {
     const dispach = useDispatch()
@@ -29,8 +30,9 @@ const Home = () => {
     return (
         <Container>
             <PatientSearch value={query} onChangeText={(t: string) => setQuery(t)} />
+            { patient.loading && <ActivityIndicator size='large'/> }
             { notFoundMessage && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
-            { patient.list.map(patient => (
+            { !patient.loading && patient.list.map(patient => (
                 <PatientCard key={patient.login.uuid} patient={patient} />
             )) }
             <PatientModal />

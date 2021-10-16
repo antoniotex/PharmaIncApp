@@ -59,6 +59,9 @@ const patient = createSlice({
         builder.addCase(getPatients.fulfilled, (state, action) => {
             state.list = action.payload.results
             state.originalList = action.payload.results
+            state.loading = false
+        }).addCase(getPatients.pending, (state, action) => {
+            state.loading = true
         })
     }
 })
