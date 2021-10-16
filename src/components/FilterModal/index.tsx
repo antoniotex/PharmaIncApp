@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
 import { GenderEnum, toggleFilterModal, updateGender, updateItemsPerRequest, countries, addNationality, removeNationality } from '../../store/filter.store';
-import { getPatients } from '../../store/patient.store';
+import { getPatients, resetPage } from '../../store/patient.store';
 
 const FiltersModal: React.FC = () => {
     const dispach = useDispatch()
@@ -19,7 +19,8 @@ const FiltersModal: React.FC = () => {
             itemsPerRequest: filter.itemsPerRequest,
             nationality: filter.nationality.join()
         }
-        dispach(getPatients(query))
+        // dispach(getPatients(query))
+        dispach(resetPage())
     }
     
     return (

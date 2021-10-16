@@ -12,3 +12,16 @@ export const NotFoundText = styled.Text`
   text-align: center;
   color: ${COLORS.secondaryOrange};
 `;
+
+export const LoadMore = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+`;
+
+export const LoadMoreText = styled.Text`
+  color: ${COLORS.secondaryOrange};
+  font-size: 20px;
+  margin-left: 10px;
+`;

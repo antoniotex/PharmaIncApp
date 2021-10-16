@@ -9,8 +9,6 @@ interface Filter {
 }
 
 export const getPatients = createAsyncThunk('patient/getPatients', async (query: Filter) => {
-    // const response = await API.get('ttps://randomuser.me/api?results=50')
-    // return response.data
     const gender = query?.gender ? `&gender=${query.gender}` : ''
     const itemsPerRequest = query?.itemsPerRequest ? query.itemsPerRequest : 50
     const nationality = query?.nationality ? `&nat=${query.nationality}` : ''
@@ -27,14 +25,16 @@ interface Patient {
     originalList: IPatientCard[];
     loading: boolean;
     showModal: boolean;
-    currentPatient?: IPatientCard
+    currentPatient?: IPatientCard;
+    page: number
 }
 
 const initialState: Patient = {
     list: [],
     originalList: [],
     loading: false,
-    showModal: false
+    showModal: false,
+    page: 1
 }
 
 const patient = createSlice({
@@ -53,12 +53,23 @@ const patient = createSlice({
                 const name = `${patient.name.title} ${patient.name.first} ${patient.name.last}`
                 return name.toLowerCase().includes(action.payload.toLowerCase())
             })
-        }
+        },
+        updatePage: (state) => {
+            state.page++
+        },
+        resetPage: (state) => {
+            state.page = 1
+        },
+
     },
     extraReducers: (builder) => {
         builder.addCase(getPatients.fulfilled, (state, action) => {
-            state.list = action.payload.results
-            state.originalList = action.payload.results
+            if(state.page > 1){
+                state.list = [...state.list, ...action.payload.results]
+            }else{
+                state.list = action.payload.results
+                state.originalList = action.payload.results
+            }
             state.loading = false
         }).addCase(getPatients.pending, (state, action) => {
             state.loading = true
@@ -66,5 +77,5 @@ const patient = createSlice({
     }
 })
 
-export const { togglePatientModal, updateCurrentPatient, filterPatientList } = patient.actions;
+export const { togglePatientModal, updateCurrentPatient, filterPatientList, updatePage, resetPage } = patient.actions;
 export default patient.reducer
