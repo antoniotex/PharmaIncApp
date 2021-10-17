@@ -19,8 +19,8 @@ const FiltersModal: React.FC = () => {
             itemsPerRequest: filter.itemsPerRequest,
             nationality: filter.nationality.join()
         }
-        // dispach(getPatients(query))
         dispach(resetPage())
+        dispach(getPatients(query))
     }
     
     return (

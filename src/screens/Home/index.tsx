@@ -24,7 +24,9 @@ const Home = () => {
     }, [query])
 
     useEffect(() => {
-        dispatch(getPatients({gender: filter.gender, nationality: filter.nationality.join(), itemsPerRequest: filter.itemsPerRequest}))
+        if(!query){
+            dispatch(getPatients({gender: filter.gender, nationality: filter.nationality.join(), itemsPerRequest: filter.itemsPerRequest}))
+        }
     }, [dispatch, patient.page])
 
     const notFoundMessage: boolean = !patient.list.length && !!query
@@ -44,23 +46,22 @@ const Home = () => {
     }
 
     return (
-        <>
-        { notFoundMessage && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
-        <FlatList
-            ListHeaderComponent={<PatientSearch value={query} onChangeText={(t: string) => setQuery(t)} />}
-            data={patient.list}
-            renderItem={({item}) => (
-                <PatientCard key={item.login.uuid} patient={item} />
-            )}
-            keyExtractor={item => item.login.uuid}
-            onEndReached={handleLoadMore}
-            onEndReachedThreshold={0}
-            ListFooterComponent={renderFooter}
-        />
-
+        <Container>
+            { notFoundMessage && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
+            <FlatList
+                ListHeaderComponent={<PatientSearch value={query} onChangeText={(t: string) => setQuery(t)} />}
+                data={patient.list}
+                renderItem={({item}) => (
+                    <PatientCard key={item.login.uuid} patient={item} />
+                )}
+                keyExtractor={item => item.login.uuid}
+                onEndReached={handleLoadMore}
+                onEndReachedThreshold={0}
+                ListFooterComponent={renderFooter}
+            />
         <PatientModal />
         <FilterModal />
-        </>
+        </Container>
     )
 }
 
