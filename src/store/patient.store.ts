@@ -3,6 +3,7 @@ import RandomUserAPI from '../services/RandomUserAPI';
 import { IPatientCard } from './../interfaces/IPatientCard';
 import { GenderEnum } from './filter.store';
 
+
 interface Filter {
     gender: GenderEnum | null;
     itemsPerRequest: number;
@@ -69,7 +70,6 @@ const patient = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getPatients.fulfilled, (state, action: PayloadAction<Result>) => {
-            console.log('ACTION 1:: ', action.payload.results)
             if(state.page > 1){
                 state.list = [...state.list, ...action.payload.results]
             }else{

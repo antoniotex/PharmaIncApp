@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { togglePatientModal } from '../../store/patient.store' 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
+// @ts-ignore
+import { FLAG_CDN_URL } from 'react-native-dotenv'
 
 const PatientModal: React.FC = () => {
     const dispach = useDispatch()
@@ -35,7 +37,7 @@ const PatientModal: React.FC = () => {
                                 <PatientInfoText>{ moment(currentPatient?.dob.date).format('DD/MM/YYYY') } - </PatientInfoText>
                                 <PatientInfoText>{ currentPatient ? currentPatient?.gender.charAt(0).toUpperCase() + currentPatient?.gender.slice(1) : '' } - </PatientInfoText>
                                 <PatientInfoText>{ currentPatient?.nat }</PatientInfoText>
-                                <PatientInfoFlag source={{ uri: `https://flagcdn.com/28x21/${currentPatient?.nat.toLowerCase()}.png` }} />
+                                <PatientInfoFlag source={{ uri: `${FLAG_CDN_URL}/28x21/${currentPatient?.nat.toLowerCase()}.png` }} />
                             </PatientInfo>
                             <PatientContact>
                                 <IconWrapper>

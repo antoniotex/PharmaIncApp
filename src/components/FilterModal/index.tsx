@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS } from '../../constants/theme'
 import { GenderEnum, toggleFilterModal, updateGender, updateItemsPerRequest, countries, addNationality, removeNationality } from '../../store/filter.store';
 import { getPatients, resetPage } from '../../store/patient.store';
+// @ts-ignore
+import { FLAG_CDN_URL } from 'react-native-dotenv'
 
 const FiltersModal: React.FC = () => {
     const dispach = useDispatch()
@@ -96,8 +98,7 @@ const FiltersModal: React.FC = () => {
                                                   backgroundColor: filter.nationality.includes(country.abbreviation) ? COLORS.primaryOrange : 'transparent'
                                               }}  
                                             >
-                                                <Flag source={{ uri: `https://flagcdn.com/28x21/${country.abbreviation.toLowerCase()}.png`}} />
-                                                {/* <Flag source={{ uri: `https://www.countryflags.io/${country.abbreviation}/flat/64.png`}} /> */}
+                                                <Flag source={{ uri: `${FLAG_CDN_URL}/28x21/${country.abbreviation.toLowerCase()}.png`}} />
                                                 <CountryName>{ country.name }</CountryName>
                                             </NationalityOption>
                                         )) }
