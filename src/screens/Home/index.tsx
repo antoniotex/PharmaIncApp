@@ -6,7 +6,7 @@ import PatientSearch from '../../components/PatientSearch'
 import FilterModal from '../../components/FilterModal'
 import { RootState } from '../../store'
 import { filterPatientList, getPatients, updatePage } from '../../store/patient.store'
-import { Container, LoadMore, LoadMoreText, NotFoundText } from './styles'
+import { Container, Content, LoadMore, LoadMoreText, NotFoundText } from './styles'
 import { ActivityIndicator, FlatList, Text } from 'react-native'
 import { COLORS } from '../../constants'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -47,20 +47,22 @@ const Home = () => {
 
     return (
         <Container>
-            { notFoundMessage && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
+            <Content>
             <FlatList
                 ListHeaderComponent={<PatientSearch value={query} onChangeText={(t: string) => setQuery(t)} />}
                 data={patient.list}
                 renderItem={({item}) => (
                     <PatientCard key={item.login.uuid} patient={item} />
-                )}
-                keyExtractor={item => item.login.uuid}
-                onEndReached={handleLoadMore}
-                onEndReachedThreshold={0}
-                ListFooterComponent={renderFooter}
-            />
-        <PatientModal />
-        <FilterModal />
+                    )}
+                    keyExtractor={item => item.login.uuid}
+                    onEndReached={handleLoadMore}
+                    onEndReachedThreshold={0}
+                    ListFooterComponent={renderFooter}
+                    />
+            { notFoundMessage && <NotFoundText>{ `No results were found for "${query}"` }</NotFoundText> }
+            <PatientModal />
+            <FilterModal />
+            </Content>
         </Container>
     )
 }

@@ -4,8 +4,11 @@ import { COLORS } from '../../constants';
 
 export const Container = styled.SafeAreaView`
     height: 100%;
-    padding: 0px 10px;
     background-color: ${COLORS.primaryBlue};
+`;
+
+export const Content = styled.View`
+    padding: 0px 10px;
 `;
 
 export const NotFoundText = styled.Text`
