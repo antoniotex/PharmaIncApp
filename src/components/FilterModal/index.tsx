@@ -1,6 +1,6 @@
 import React from 'react'
 import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentItem, ContentWrapper, ItemsPerRequest, TitleText, ItemsPerRequestText, Gender, GenderOption, GenderOptionText, Nationality, NationalityOption, Flag, CountryName, NationalityScroller } from './styles'
-import { Modal } from 'react-native'
+import { Modal, Platform } from 'react-native'
 import Slider from '@react-native-community/slider';
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,7 +38,12 @@ const FiltersModal: React.FC = () => {
                 <ContentWrapper>
                     <Content>
                         <ContentHeader>
-                            <CloseButton onPress={() => dispach(toggleFilterModal(false))}>
+                            <CloseButton onPress={() => {
+                                if(Platform.OS == 'android'){
+                                    search()
+                                }
+                                dispach(toggleFilterModal(false))
+                            }}>
                                 <Icon name="close" size={30} color={COLORS.primaryOrange} />
                             </CloseButton>
                         </ContentHeader>

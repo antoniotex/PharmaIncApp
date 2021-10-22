@@ -8,7 +8,7 @@ import Home from '../screens/Home'
 import { COLORS } from '../constants';
 
 export default () => (
-    <Tab.Navigator screenOptions={{ headerShown:false, tabBarStyle:{backgroundColor: COLORS.primaryBlue, height:70, paddingTop:10} }}>
+    <Tab.Navigator screenOptions={{ headerShown:false, tabBarStyle:{backgroundColor: COLORS.primaryBlue} }}>
         <Tab.Screen
             name="Home"
             component={Home}

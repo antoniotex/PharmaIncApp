@@ -1,6 +1,7 @@
 import { COLORS } from './../../constants/theme';
 import React from "react";
 import styled from "styled-components/native";
+import { Platform } from 'react-native';
 
 export const Container = styled.View`
     flex-direction: row;
@@ -12,7 +13,7 @@ export const InputWrapper = styled.View`
     border: 1px solid ${COLORS.secondaryBlue};
     flex-direction: row;
     border-radius: 8px;
-    padding: 8px;
+    padding: ${Platform.OS == 'ios' ? '10px' : '0px 10px'};
     margin: 20px 0px;
     align-items: center;
 `;
