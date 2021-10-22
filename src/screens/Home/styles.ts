@@ -2,9 +2,10 @@ import React from 'react';
 import styled from "styled-components/native";
 import { COLORS } from '../../constants';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
     height: 100%;
     padding: 0px 10px;
+    background-color: ${COLORS.primaryBlue};
 `;
 
 export const NotFoundText = styled.Text`
