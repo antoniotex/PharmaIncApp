@@ -1,7 +1,7 @@
 import React from 'react'
 import { CloseButton, Container, Content, ContentBody, ContentHeader, ContentWrapper, IconWrapper, PatientContact, PatientContactText, PatientImage, PatientInfo, PatientInfoFlag, PatientInfoText, PatientName } from './styles'
 import moment from 'moment'
-import { Image, Modal} from 'react-native'
+import { Modal} from 'react-native'
 import { RootState } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { togglePatientModal } from '../../store/patient.store' 
