@@ -98,9 +98,9 @@ export const NationalityOption = styled.TouchableOpacity`
 `;
 
 export const Flag = styled.Image`
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
+    width: 28px;
+    height: 21px;
+    margin-right: 10px;
 `;
 
 export const CountryName = styled(GenderOptionText)`

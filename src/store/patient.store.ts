@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import RandomUserAPI from '../services/RandomUserAPI';
 import { IPatientCard } from './../interfaces/IPatientCard';
 import { GenderEnum } from './filter.store';
 
@@ -13,12 +14,16 @@ export const getPatients = createAsyncThunk('patient/getPatients', async (query:
     const itemsPerRequest = query?.itemsPerRequest ? query.itemsPerRequest : 50
     const nationality = query?.nationality ? `&nat=${query.nationality}` : ''
 
-    return fetch(
-        `https://randomuser.me/api?results=${itemsPerRequest}&inc=${patientFields}${gender}${nationality}`
-    ).then((res) => res.json())
+    const result = await RandomUserAPI.get<Result>(`?results=${itemsPerRequest}&inc=${patientFields}${gender}${nationality}`)
+
+    return result.data
 });
 
 const patientFields = 'name,gender,location,email,login,dob,phone,cell,picture,nat,id'
+
+interface Result {
+    results: IPatientCard[]
+}
 
 interface Patient {
     list: IPatientCard[];
@@ -63,7 +68,8 @@ const patient = createSlice({
 
     },
     extraReducers: (builder) => {
-        builder.addCase(getPatients.fulfilled, (state, action) => {
+        builder.addCase(getPatients.fulfilled, (state, action: PayloadAction<Result>) => {
+            console.log('ACTION 1:: ', action.payload.results)
             if(state.page > 1){
                 state.list = [...state.list, ...action.payload.results]
             }else{

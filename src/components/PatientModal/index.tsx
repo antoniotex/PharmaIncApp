@@ -35,7 +35,7 @@ const PatientModal: React.FC = () => {
                                 <PatientInfoText>{ moment(currentPatient?.dob.date).format('DD/MM/YYYY') } - </PatientInfoText>
                                 <PatientInfoText>{ currentPatient ? currentPatient?.gender.charAt(0).toUpperCase() + currentPatient?.gender.slice(1) : '' } - </PatientInfoText>
                                 <PatientInfoText>{ currentPatient?.nat }</PatientInfoText>
-                                <PatientInfoFlag source={{ uri: `https://www.countryflags.io/${currentPatient?.nat}/flat/64.png` }} />
+                                <PatientInfoFlag source={{ uri: `https://flagcdn.com/28x21/${currentPatient?.nat.toLowerCase()}.png` }} />
                             </PatientInfo>
                             <PatientContact>
                                 <IconWrapper>

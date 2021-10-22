@@ -96,7 +96,8 @@ const FiltersModal: React.FC = () => {
                                                   backgroundColor: filter.nationality.includes(country.abbreviation) ? COLORS.primaryOrange : 'transparent'
                                               }}  
                                             >
-                                                <Flag source={{ uri: `https://www.countryflags.io/${country.abbreviation}/flat/64.png`}} />
+                                                <Flag source={{ uri: `https://flagcdn.com/28x21/${country.abbreviation.toLowerCase()}.png`}} />
+                                                {/* <Flag source={{ uri: `https://www.countryflags.io/${country.abbreviation}/flat/64.png`}} /> */}
                                                 <CountryName>{ country.name }</CountryName>
                                             </NationalityOption>
                                         )) }
